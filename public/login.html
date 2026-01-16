@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Wi-Fi UFERSA</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: linear-gradient(135deg, #0a4b2a, #1b7a46);
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+    }
+
+    .card {
+      background: #ffffff;
+      color: #333;
+      width: 420px;
+      padding: 30px;
+      border-radius: 10px;
+      text-align: center;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+    }
+
+    .logo {
+      font-size: 32px;
+      font-weight: bold;
+      color: #1b7a46;
+      margin-bottom: 10px;
+    }
+
+    .sub {
+      font-size: 14px;
+      margin-bottom: 20px;
+      color: #555;
+    }
+
+    input {
+      width: 90%;
+      padding: 10px;
+      margin-top: 10px;
+      font-size: 16px;
+    }
+
+    button {
+      margin-top: 20px;
+      padding: 10px 20px;
+      font-size: 16px;
+      background: #1b7a46;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #145c36;
+    }
+
+    .footer {
+      margin-top: 25px;
+      font-size: 12px;
+      color: #777;
+    }
+
+    .footer strong {
+      color: #1b7a46;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <div class="logo">Wi-Fi UFERSA</div>
+    <div class="sub">Portal de Acesso ao Restaurante Universitário</div>
+
+    <input id="matricula" placeholder="Matrícula institucional">
+
+    <br>
+    <button onclick="login()">Acessar Rede</button>
+
+    <div class="footer">
+      <p><strong>Projeto:</strong> Sistema de Previsão de Refeições do RU</p>
+      <p><strong>Disciplina:</strong> Sistemas em Tempo Real</p>
+      <p><strong>Aluno:</strong> João Lucas Oliveira de Andrade</p>
+      <p><strong>Orientador:</strong> Petrucio Ricardo Tavares de Medeiros</p>
+    </div>
+  </div>
+
+  <script>
+    async function login() {
+      const mat = document.getElementById("matricula").value;
+      if (!mat) {
+        alert("Informe a matrícula");
+        return;
+      }
+
+      // Simula validação do Wi-Fi (ping no servidor)
+      await fetch("/ping");
+
+      localStorage.setItem("matricula", mat);
+      window.location.href = "ru.html";
+    }
+  </script>
+
+</body>
+</html>
+

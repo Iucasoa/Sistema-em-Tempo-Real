@@ -1,0 +1,12 @@
+{
+  "name": "ru-inteligente",
+  "version": "1.0.0",
+  "description": "Sistema inteligente para previsão de refeições no RU usando WebSocket",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "ws": "^8.16.0"
+  }
+}

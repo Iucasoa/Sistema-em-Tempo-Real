@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Monitoramento RU - Tempo Real</title>
+  <style>
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: #111;
+      color: #0f0;
+      padding: 20px;
+    }
+
+    h1 {
+      color: #0f0;
+    }
+
+    .box {
+      background: #000;
+      border: 1px solid #0f0;
+      padding: 15px;
+      width: 400px;
+    }
+
+    p {
+      margin: 5px 0;
+      font-family: monospace;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Monitoramento em Tempo Real - RU</h1>
+
+  <div class="box" id="dados">
+    Carregando métricas...
+  </div>
+
+  <script>
+    async function atualizar() {
+      try {
+        const res = await fetch("/metricas");
+        const data = await res.json();
+
+        document.getElementById("dados").innerHTML = `
+          <p>Almoço confirmados: ${data.contagem.almoco}</p>
+          <p>Jantar confirmados: ${data.contagem.jantar}</p>
+          <hr>
+          <p>Latência média: ${data.latencia_media_ms.toFixed(2)} ms</p>
+          <p>Jitter: ${data.jitter_ms.toFixed(2)} ms</p>
+          <p>Taxa: ${data.taxa_mensagens_por_seg.toFixed(2)} msg/s</p>
+          <p>Banda: ${data.banda_bytes_por_seg.toFixed(2)} bytes/s</p>
+          <p>Perda de pacotes: ${data.perda_pacote}</p>
+          <p>Classificação: ${data.tipo_tempo_real}</p>
+        `;
+      } catch (e) {
+        document.getElementById("dados").innerText =
+          "Erro ao obter métricas";
+      }
+    }
+
+    // Atualiza a cada 1 segundo
+    setInterval(atualizar, 1000);
+    atualizar();
+  </script>
+
+</body>
+</html>

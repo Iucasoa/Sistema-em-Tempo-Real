@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>RU UFERSA</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: #f4f6f5;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .card {
+      background: white;
+      width: 420px;
+      padding: 30px;
+      border-radius: 10px;
+      text-align: center;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    }
+
+    h1 {
+      color: #1b7a46;
+    }
+
+    button {
+      width: 80%;
+      padding: 12px;
+      margin-top: 15px;
+      font-size: 16px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .almoco {
+      background: #1b7a46;
+      color: white;
+    }
+
+    .jantar {
+      background: #0a4b2a;
+      color: white;
+    }
+
+    button:hover {
+      opacity: 0.9;
+    }
+
+    .status {
+      margin-top: 25px;
+      font-size: 14px;
+      color: #444;
+    }
+
+    .totais {
+      margin-top: 10px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <h1>RU UFERSA</h1>
+    <p>Confirme sua refeição</p>
+
+    <button class="almoco" onclick="confirmar('almoco')">
+      Confirmar Almoço
+    </button>
+
+    <button class="jantar" onclick="confirmar('jantar')">
+      Confirmar Jantar
+    </button>
+
+    <div class="status">
+      <p>Totais confirmados:</p>
+      <div class="totais">
+        Almoço: <span id="almoco">0</span><br>
+        Jantar: <span id="jantar">0</span>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const matricula = localStorage.getItem("matricula");
+    if (!matricula) {
+      window.location.href = "login.html";
+    }
+
+    const ws = new WebSocket("ws://localhost:8080");
+
+    ws.onmessage = event => {
+      const data = JSON.parse(event.data);
+
+      if (data.tipo === "status") {
+        document.getElementById("almoco").innerText =
+          data.contagem.almoco;
+        document.getElementById("jantar").innerText =
+          data.contagem.jantar;
+      }
+
+      if (data.tipo === "erro") {
+        alert(data.mensagem);
+      }
+    };
+
+    function confirmar(refeicao) {
+      const horaAtual = new Date().getHours();
+
+      // Almoço fora do horário
+      if (refeicao === "almoco" && horaAtual >= 9) {
+        alert(
+          "Horário do almoço encerrado.\n" +
+          "A confirmação só é permitida antes das 09:00."
+        );
+        return;
+      }
+
+      // Jantar fora do horário
+      if (refeicao === "jantar" && horaAtual >= 15) {
+        alert(
+          "Horário do jantar encerrado.\n" +
+          "A confirmação só é permitida antes das 15:00."
+        );
+        return;
+      }
+
+      ws.send(JSON.stringify({
+        matricula,
+        refeicao
+      }));
+    }
+  </script>
+
+</body>
+</html>
+
