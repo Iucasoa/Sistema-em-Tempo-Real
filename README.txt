@@ -1,60 +1,61 @@
-# 🍽️ RU UFERSA - Sistema de Agendamento em Tempo Real
+<h1 align="center">🍽️ RU UFERSA - Smart Scheduler</h1>
 
 <p align="center">
-  <img src="https://github.com/lucasoa/ufersa-ru-manager/blob/main/screenshot.png?raw=true" width="850px" alt="Preview do Sistema RU">
+  <img src="https://github.com/lucasoa/ufersa-ru-manager/blob/main/screenshot.png?raw=true" width="850px" style="border-radius: 10px; box-shadow: 0px 10px 30px rgba(0,0,0,0.1);">
 </p>
 
-Este projeto consiste em uma solução **Full-Stack** desenvolvida para otimizar o processo de confirmação de refeições no Restaurante Universitário da **UFERSA**. A aplicação utiliza comunicação bidirecional para garantir que a demanda de refeições seja atualizada instantaneamente.
-
----
-
-## 🚀 Funcionalidades
-
-* **Módulo de Agendamento:** Confirmação individual de Almoço e Jantar com travas de segurança.
-* **Dashboard em Tempo Real:** Visualização dinâmica dos totais confirmados via WebSockets.
-* **Validação de Horário:** Sistema inteligente que bloqueia agendamentos fora do prazo (09:00 para almoço / 15:00 para jantar).
-* **Persistência:** Gerenciamento de sessão do aluno através de `localStorage`.
-
----
-
-## 🛠️ Tecnologias Utilizadas
-
-**Linguagens e Interface:**
-<p align="left">
-  <img src="https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white" />
-  <img src="https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white" />
-  <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black" />
+<p align="center">
+  <b>Sistema Full-Stack de agendamento em tempo real para o Restaurante Universitário.</b><br>
+  <i>Desenvolvido para a disciplina de Sistemas Distribuídos - Engenharia de Computação</i>
 </p>
 
-**Comunicação e Protocolos:**
-<p align="left">
-  <img src="https://img.shields.io/badge/WebSockets-010101?style=for-the-badge&logo=socket.io&logoColor=white" />
-  <img src="https://img.shields.io/badge/JSON-000000?style=for-the-badge&logo=json&logoColor=white" />
+<p align="center">
+  <img src="https://img.shields.io/badge/Status-Concluído-success?style=for-the-badge" />
+  <img src="https://img.shields.io/badge/UFERSA-Engenharia-green?style=for-the-badge" />
 </p>
 
 ---
 
-## ⚙️ Conceitos Técnicos Aplicados
-
-* **Comunicação Full-Duplex:** Implementação de protocolo WebSocket para troca de dados em tempo real.
-* **Manipulação Dinâmica de DOM:** Interface que reage instantaneamente aos eventos do servidor.
-* **Arquitetura Cliente-Servidor:** Separação clara entre a lógica de interface e o processamento de dados.
-* **UX Design:** Foco em usabilidade acadêmica e feedback visual imediato.
+### 🚀 O Projeto
+O **Smart RU** resolve o problema de previsibilidade de demanda no restaurante universitário. Utilizando **WebSockets**, o sistema permite que tanto alunos quanto administradores vejam o fluxo de refeições confirmadas sem atrasos (Real-time).
 
 ---
 
-## 📂 Estrutura do Repositório
+### 🛠️ Stack Tecnológica
 
-* `index.html` - Dashboard e interface de confirmação.
-* `login.html` - Sistema de entrada e validação de matrícula.
-* `server.js` - Backend para gerenciamento de conexões e broadcast.
+| Camada | Tecnologias |
+| :--- | :--- |
+| **Frontend** | <img src="https://img.shields.io/badge/HTML5-E34F26?style=flat-square&logo=html5&logoColor=white" /> <img src="https://img.shields.io/badge/CSS3-1572B6?style=flat-square&logo=css3&logoColor=white" /> <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=flat-square&logo=javascript&logoColor=black" /> |
+| **Comunicação** | <img src="https://img.shields.io/badge/WebSockets-010101?style=flat-square&logo=socket.io&logoColor=white" /> <img src="https://img.shields.io/badge/JSON-000000?style=flat-square&logo=json&logoColor=white" /> |
+| **Arquitetura** | Event-Driven / Client-Server |
 
 ---
 
-## 🔧 Como Executar
+### ⚙️ Funcionalidades Chave
 
-1. Certifique-se de que o servidor WebSocket está ativo em `localhost:8080`.
-2. Abra o arquivo `index.html` no navegador.
-3. Para testar sem a tela de login, insira manualmente no console:
-   ```javascript
-   localStorage.setItem("matricula", "2021000000");
+- [x] **Agendamento Inteligente:** Bloqueio automático baseado no horário do servidor.
+- [x] **Live Dashboard:** Contador de refeições que atualiza via broadcast.
+- [x] **Session Management:** Persistência de dados com LocalStorage.
+
+---
+
+### 📐 Arquitetura de Comunicação
+O fluxo de dados segue o modelo de eventos bidirecionais:
+
+[Image of a sequence diagram for WebSocket communication]
+
+1. **Client** envia confirmação de refeição via socket.
+2. **Server** valida o horário e processa o incremento no banco.
+3. **Server** faz o *broadcast* do novo total para todos os clientes conectados.
+
+---
+
+### 📁 Como executar
+1. Certifique-se de ter o Node.js/Backend ativo.
+2. Clone o repositório e abra o `index.html`.
+3. Use o console (F12) para definir a matrícula: `localStorage.setItem("matricula", "2024000")`.
+
+---
+<p align="center">
+  Feito com ☕ por <a href="https://github.com/lucasoa">João Lucas</a>
+</p>
