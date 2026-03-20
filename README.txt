@@ -1,37 +1,47 @@
-# 🍽️ RU UFERSA - Sistema de Agendamento em Tempo Real
+# 🍽️ Smart RU - Sistema de Agendamento em Tempo Real (UFERSA)
 
-Este projeto é uma solução full-stack para gerenciar a confirmação de refeições no Restaurante Universitário da **UFERSA**. O diferencial técnico é o uso de comunicação bidirecional para atualização de dados sem necessidade de recarregar a página.
+![Status](https://img.shields.io/badge/Status-Em_Desenvolvimento-green?style=for-the-badge)
+![Tech](https://img.shields.io/badge/Full--Stack-WebSockets-blue?style=for-the-badge&logo=javascript)
 
-## 🚀 Tecnologias e Conceitos Utilizados
+O **Smart RU** é uma solução desenvolvida para otimizar o fluxo de confirmação de refeições no Restaurante Universitário. O sistema utiliza comunicação bidirecional para que a administração e os alunos visualizem a demanda em tempo real, evitando desperdícios e filas.
 
-- **Front-end:** HTML5 e CSS3 com design responsivo (Card UI).
-- **WebSockets (WS):** Implementação de comunicação em tempo real para monitorar o total de refeições confirmadas instantaneamente.
-- **LocalStorage:** Persistência de dados de sessão (matrícula do aluno) no navegador.
-- **Lógica de Negócio de Tempo Real:** Restrições automáticas baseadas no horário local (ex: bloqueio de almoço após as 09:00).
+---
 
-[Image of a sequence diagram for WebSocket communication]
+## ⚙️ Arquitetura do Sistema
 
-## 🛠️ Funcionalidades
+O diferencial deste projeto é a implementação do protocolo **WebSocket (WS)** em vez do HTTP tradicional. Isso permite que o servidor "empurre" atualizações para todos os clientes conectados assim que uma confirmação é feita.
 
-- **Login Persistente:** Verifica a matrícula armazenada antes de liberar o acesso.
-- **Confirmação de Refeição:** Interface intuitiva para Almoço e Jantar.
-- **Dashboard Dinâmico:** Painel "Totais confirmados" que atualiza para todos os usuários conectados sempre que uma nova confirmação é feita.
-- **Validação de Horário:** Sistema inteligente que impede agendamentos fora do prazo estipulado pelo RU.
 
-## 📂 Estrutura de Arquivos (Prevista)
 
-- `index.html`: Interface principal de confirmação.
-- `login.html`: Tela de autenticação do aluno.
-- `server.js`: (Node.js sugerido) Backend responsável por gerenciar as conexões WebSocket e o contador de refeições.
+### Regras de Negócio Implementadas:
+* **🕒 Janela de Confirmação:** Travas de segurança baseadas no horário local.
+    * **Almoço:** Confirmações aceitas apenas até as **09:00**.
+    * **Jantar:** Confirmações aceitas apenas até as **15:00**.
+* **🔐 Persistência de Sessão:** Uso de `localStorage` para manter a identidade do aluno sem necessidade de re-login constante.
 
-## 🔧 Como Testar
+---
 
-1. Certifique-se de ter um servidor WebSocket rodando em `localhost:8080`.
-2. Abra o arquivo `index.html` em seu navegador.
-3. Simule a matrícula inserindo um valor no `localStorage` via console:
-   ```javascript
-   localStorage.setItem("matricula", "2021000000");
-A aplicação possui um painel de monitoramento para análise técnica do sistema.
+## 🛠️ Tecnologias Utilizadas
 
-Para acessar o painel:
-http://localhost:8080/monitor.html
+| Camada | Tecnologia | Descrição |
+| :--- | :--- | :--- |
+| **Front-end** | HTML5 / CSS3 | Interface limpa com foco em UX (User Experience). |
+| **Real-time** | WebSockets (API) | Sincronização de dados instantânea entre múltiplos usuários. |
+| **Storage** | LocalStorage | Armazenamento de credenciais no lado do cliente. |
+| **Lógica** | JavaScript (ES6+) | Manipulação de DOM e validações de data/hora. |
+
+---
+
+## 📸 Interface
+
+<p align="center">
+  <img src="https://via.placeholder.com/600x300.png?text=Preview+do+Sistema+RU+UFERSA" alt="Interface do RU UFERSA">
+</p>
+
+---
+
+## 🚀 Como Executar o Projeto
+
+### 1. Clonar o repositório
+```bash
+git clone [https://github.com/lucasoa/smart-ru-ufersa.git](https://github.com/lucasoa/smart-ru-ufersa.git)
