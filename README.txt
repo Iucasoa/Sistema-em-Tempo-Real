@@ -1,7 +1,7 @@
 # 🍽️ RU UFERSA - Sistema de Agendamento em Tempo Real
 
 <p align="center">
-  <img src="./SUA_FOTO_AQUI.png" width="800px" alt="Preview do Sistema RU">
+  <img src="https://github.com/lucasoa/ufersa-ru-manager/blob/main/screenshot.png?raw=true" width="850px" alt="Preview do Sistema RU">
 </p>
 
 Este projeto consiste em uma solução **Full-Stack** desenvolvida para otimizar o processo de confirmação de refeições no Restaurante Universitário da **UFERSA**. A aplicação utiliza comunicação bidirecional para garantir que a demanda de refeições seja atualizada instantaneamente.
@@ -40,11 +40,6 @@ Este projeto consiste em uma solução **Full-Stack** desenvolvida para otimizar
 * **Manipulação Dinâmica de DOM:** Interface que reage instantaneamente aos eventos do servidor.
 * **Arquitetura Cliente-Servidor:** Separação clara entre a lógica de interface e o processamento de dados.
 * **UX Design:** Foco em usabilidade acadêmica e feedback visual imediato.
-
-
-
-[Image of WebSocket communication protocol diagram]
-
 
 ---
 
