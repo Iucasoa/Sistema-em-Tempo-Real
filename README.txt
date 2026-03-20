@@ -1,37 +1,36 @@
-- Objetivo:
-Esta aplicação foi desenvolvida para ajudar a reduzir o desperdício de alimentos no Restaurante Universitário (RU),
-permitindo estimar em tempo real quantas pessoas irão almoçar e jantar em determinado dia.
+# 🍽️ RU UFERSA - Sistema de Agendamento em Tempo Real
 
+Este projeto é uma solução full-stack para gerenciar a confirmação de refeições no Restaurante Universitário da **UFERSA**. O diferencial técnico é o uso de comunicação bidirecional para atualização de dados sem necessidade de recarregar a página.
 
-- Funcionamento:
+## 🚀 Tecnologias e Conceitos Utilizados
 
-O usuário conecta-se ao Wi-Fi institucional.
+- **Front-end:** HTML5 e CSS3 com design responsivo (Card UI).
+- **WebSockets (WS):** Implementação de comunicação em tempo real para monitorar o total de refeições confirmadas instantaneamente.
+- **LocalStorage:** Persistência de dados de sessão (matrícula do aluno) no navegador.
+- **Lógica de Negócio de Tempo Real:** Restrições automáticas baseadas no horário local (ex: bloqueio de almoço após as 09:00).
 
-O acesso à aplicação ocorre por meio de um portal de login (simulando um portal cativo).
+[Image of a sequence diagram for WebSocket communication]
 
-Após o login, o usuário acessa a página do RU.
+## 🛠️ Funcionalidades
 
-O usuário confirma se irá almoçar ou jantar.
+- **Login Persistente:** Verifica a matrícula armazenada antes de liberar o acesso.
+- **Confirmação de Refeição:** Interface intuitiva para Almoço e Jantar.
+- **Dashboard Dinâmico:** Painel "Totais confirmados" que atualiza para todos os usuários conectados sempre que uma nova confirmação é feita.
+- **Validação de Horário:** Sistema inteligente que impede agendamentos fora do prazo estipulado pelo RU.
 
-A confirmação é enviada ao servidor via WebSocket.
+## 📂 Estrutura de Arquivos (Prevista)
 
-O servidor atualiza a contagem em tempo real.
+- `index.html`: Interface principal de confirmação.
+- `login.html`: Tela de autenticação do aluno.
+- `server.js`: (Node.js sugerido) Backend responsável por gerenciar as conexões WebSocket e o contador de refeições.
 
+## 🔧 Como Testar
 
-- Como executar o sistema:
-
-Abrir o Prompt de Comando.
-
-Acessar a pasta do projeto.
-
-Executar o comando:
-npm start
-
-O servidor ficará disponível em:
-http://localhost:8080
-
-
-- Monitoramento em tempo real:
+1. Certifique-se de ter um servidor WebSocket rodando em `localhost:8080`.
+2. Abra o arquivo `index.html` em seu navegador.
+3. Simule a matrícula inserindo um valor no `localStorage` via console:
+   ```javascript
+   localStorage.setItem("matricula", "2021000000");
 A aplicação possui um painel de monitoramento para análise técnica do sistema.
 
 Para acessar o painel:
