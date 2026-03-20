@@ -1,47 +1,65 @@
-# 🍽️ Smart RU - Sistema de Agendamento em Tempo Real (UFERSA)
+# 🍽️ RU UFERSA - Sistema de Agendamento em Tempo Real
 
-![Status](https://img.shields.io/badge/Status-Em_Desenvolvimento-green?style=for-the-badge)
-![Tech](https://img.shields.io/badge/Full--Stack-WebSockets-blue?style=for-the-badge&logo=javascript)
+<p align="center">
+  <img src="./SUA_FOTO_AQUI.png" width="800px" alt="Preview do Sistema RU">
+</p>
 
-O **Smart RU** é uma solução desenvolvida para otimizar o fluxo de confirmação de refeições no Restaurante Universitário. O sistema utiliza comunicação bidirecional para que a administração e os alunos visualizem a demanda em tempo real, evitando desperdícios e filas.
+Este projeto consiste em uma solução **Full-Stack** desenvolvida para otimizar o processo de confirmação de refeições no Restaurante Universitário da **UFERSA**. A aplicação utiliza comunicação bidirecional para garantir que a demanda de refeições seja atualizada instantaneamente.
 
 ---
 
-## ⚙️ Arquitetura do Sistema
+## 🚀 Funcionalidades
 
-O diferencial deste projeto é a implementação do protocolo **WebSocket (WS)** em vez do HTTP tradicional. Isso permite que o servidor "empurre" atualizações para todos os clientes conectados assim que uma confirmação é feita.
-
-
-
-### Regras de Negócio Implementadas:
-* **🕒 Janela de Confirmação:** Travas de segurança baseadas no horário local.
-    * **Almoço:** Confirmações aceitas apenas até as **09:00**.
-    * **Jantar:** Confirmações aceitas apenas até as **15:00**.
-* **🔐 Persistência de Sessão:** Uso de `localStorage` para manter a identidade do aluno sem necessidade de re-login constante.
+* **Módulo de Agendamento:** Confirmação individual de Almoço e Jantar com travas de segurança.
+* **Dashboard em Tempo Real:** Visualização dinâmica dos totais confirmados via WebSockets.
+* **Validação de Horário:** Sistema inteligente que bloqueia agendamentos fora do prazo (09:00 para almoço / 15:00 para jantar).
+* **Persistência:** Gerenciamento de sessão do aluno através de `localStorage`.
 
 ---
 
 ## 🛠️ Tecnologias Utilizadas
 
-| Camada | Tecnologia | Descrição |
-| :--- | :--- | :--- |
-| **Front-end** | HTML5 / CSS3 | Interface limpa com foco em UX (User Experience). |
-| **Real-time** | WebSockets (API) | Sincronização de dados instantânea entre múltiplos usuários. |
-| **Storage** | LocalStorage | Armazenamento de credenciais no lado do cliente. |
-| **Lógica** | JavaScript (ES6+) | Manipulação de DOM e validações de data/hora. |
+**Linguagens e Interface:**
+<p align="left">
+  <img src="https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white" />
+  <img src="https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white" />
+  <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black" />
+</p>
 
----
-
-## 📸 Interface
-
-<p align="center">
-  <img src="https://via.placeholder.com/600x300.png?text=Preview+do+Sistema+RU+UFERSA" alt="Interface do RU UFERSA">
+**Comunicação e Protocolos:**
+<p align="left">
+  <img src="https://img.shields.io/badge/WebSockets-010101?style=for-the-badge&logo=socket.io&logoColor=white" />
+  <img src="https://img.shields.io/badge/JSON-000000?style=for-the-badge&logo=json&logoColor=white" />
 </p>
 
 ---
 
-## 🚀 Como Executar o Projeto
+## ⚙️ Conceitos Técnicos Aplicados
 
-### 1. Clonar o repositório
-```bash
-git clone [https://github.com/lucasoa/smart-ru-ufersa.git](https://github.com/lucasoa/smart-ru-ufersa.git)
+* **Comunicação Full-Duplex:** Implementação de protocolo WebSocket para troca de dados em tempo real.
+* **Manipulação Dinâmica de DOM:** Interface que reage instantaneamente aos eventos do servidor.
+* **Arquitetura Cliente-Servidor:** Separação clara entre a lógica de interface e o processamento de dados.
+* **UX Design:** Foco em usabilidade acadêmica e feedback visual imediato.
+
+
+
+[Image of WebSocket communication protocol diagram]
+
+
+---
+
+## 📂 Estrutura do Repositório
+
+* `index.html` - Dashboard e interface de confirmação.
+* `login.html` - Sistema de entrada e validação de matrícula.
+* `server.js` - Backend para gerenciamento de conexões e broadcast.
+
+---
+
+## 🔧 Como Executar
+
+1. Certifique-se de que o servidor WebSocket está ativo em `localhost:8080`.
+2. Abra o arquivo `index.html` no navegador.
+3. Para testar sem a tela de login, insira manualmente no console:
+   ```javascript
+   localStorage.setItem("matricula", "2021000000");
