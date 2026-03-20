@@ -210,7 +210,7 @@ Para dúvidas ou sugestões, abra uma [issue](https://github.com/Iucasoa/Sistema
 
 ## 🎓 Contexto Acadêmico
 
-- **Disciplina**: Sistemas Distribuídos
+- **Disciplina**: Sistemas em Tempo Real
 - **Curso**: Engenharia de Computação
 - **Instituição**: UFERSA (Universidade Federal Rural do Semi-Árido)
 - **Ano**: 2024
